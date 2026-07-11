@@ -1,0 +1,40 @@
+PARALLEL AUDIT MATRIX: STANDARD GLM MDRf DRIVERS
+Executed systematically to validate isolate fixed effects under zero random variance thresholds
+
+
+Call:
+glm(formula = MDRf ~ Year_Fact + State + Source + Season + pH + 
+    Temperature + Turbidity, family = binomial(link = "logit"), 
+    data = base_isolates_audit)
+
+Coefficients:
+                      Estimate Std. Error z value Pr(>|z|)   
+(Intercept)           0.131256   1.734453   0.076  0.93968   
+Year_Fact2020        -1.112600   0.562554  -1.978  0.04796 * 
+Year_Fact2021         0.087808   0.417001   0.211  0.83322   
+Year_Fact2022        -0.306451   0.324132  -0.945  0.34443   
+Year_Fact2023        -0.449099   0.420150  -1.069  0.28511   
+StateMexico City     -1.206395   0.814302  -1.482  0.13847   
+StateMorelos         -1.925284   0.719381  -2.676  0.00744 **
+StateState of Mexico -1.323501   0.721998  -1.833  0.06679 . 
+StateTlaxcala        -1.596102   0.737996  -2.163  0.03056 * 
+SourceDam            -0.839463   0.766660  -1.095  0.27353   
+SourcePond            0.099267   0.497636   0.199  0.84189   
+SourceRiver           0.595892   0.315000   1.892  0.05853 . 
+SeasonSpring          0.441137   0.355255   1.242  0.21433   
+SeasonSummer         -0.087465   0.310645  -0.282  0.77828   
+SeasonWinter          0.624384   0.423450   1.475  0.14034   
+pH                   -0.002155   0.201317  -0.011  0.99146   
+Temperature          -0.002259   0.029697  -0.076  0.93937   
+Turbidity             0.002777   0.001600   1.736  0.08252 . 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 607.58  on 507  degrees of freedom
+Residual deviance: 569.28  on 490  degrees of freedom
+AIC: 605.28
+
+Number of Fisher Scoring iterations: 4
+
