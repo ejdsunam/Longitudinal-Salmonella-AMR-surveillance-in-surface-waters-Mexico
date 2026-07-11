@@ -1,0 +1,23 @@
+"Water, Air, & Soil Pollution",,,,
+,,,,
+Long-term genomic surveillance unveils key drivers of Salmonella contamination and antimicrobial resistance dynamics in surface waters from Central Mexico ,,,,
+,,,,
+"Enrique Jesœs Delgado-Su‡rez*, Santiago Zapata-Ram’rez, Luz del Carmen Sierra-G—mez Pedroso, Francisco Alejandro Ru’z-L—pez, Nayarit EmŽrita Ballesteros-Nova, Orbel’n Soberanis-Ramos, Mar’a Salid Rubio-Lozano, Luisa Mar’a S‡nchez-Zamorano, Yaselda Chavarin-Pineda, Rebecca Bell, Anna Brover, Maria Balkey, Christopher Grim, Eric W. Brown, Marc W. Allard, Zhao Chen, Magaly Toro, Jianghong Meng
+*Corresponding author. Facultad de Medicina Veterinaria y Zootecnia, Universidad Nacional Aut—noma de MŽxico, Mexico City, Mexico. E-mail: ejds@fmvz.unam.mx",,,,
+,,,,
+Online resource 8.  Longitudinal trend analysis of AMR phenotypes and MDR profiles (MDRf) according to GLM analysis ,,,,
+,,,,
+Variable,Beta,Odds_Ratio,P_Value,Interpretation
+AMP,-0.0643,0.9377,0.3975,Stationary Longitudinal Dynamic (Stable)
+AMC,-0.461,0.6307,0.0646,Stationary Longitudinal Dynamic (Stable)
+CRO,-0.613,0.5417,0.0091,SIGNIFICANT DECREASE ðŸ“‰
+FEP,-17.2015,0,0.9956,Stationary Longitudinal Dynamic (Stable)
+MEM,-0.4548,0.6346,0.3146,Stationary Longitudinal Dynamic (Stable)
+CIP,-0.1716,0.8423,0.2024,Stationary Longitudinal Dynamic (Stable)
+AZM,-0.2846,0.7523,0.0027,SIGNIFICANT DECREASE ðŸ“‰
+TET,0.0837,1.0873,0.167,Stationary Longitudinal Dynamic (Stable)
+CHL,0.0257,1.0261,0.7048,Stationary Longitudinal Dynamic (Stable)
+AMK,0.2981,1.3473,0.1696,Stationary Longitudinal Dynamic (Stable)
+STR,0.0366,1.0373,0.552,Stationary Longitudinal Dynamic (Stable)
+SXT,0.0914,1.0958,0.1898,Stationary Longitudinal Dynamic (Stable)
+MDRf,0.0445,1.0455,0.4844,Stationary Longitudinal Dynamic (Stable)
