@@ -498,7 +498,7 @@ write.csv(permdisp_table_df, "Fig.6B_PERMDISP_Year_Anova.csv", row.names = TRUE)
 
 ### 7. Build and export the PERMDISP x Year figure
 
-```{r plot_temporal_permdisp_boxplot}
+```{r plot_temporal_permdisp_boxplot, message=FALSE, warning=FALSE}
 dispersion_dataframe <- data.frame(
   Year     = as.factor(temporal_dispersion$group),
   Distance = temporal_dispersion$distances
@@ -561,7 +561,7 @@ write.csv(permdisp_table_reg_df, "Online_Resource_6D_PERMDISP_Regional_Anova.csv
 
 ### 14. Build and export the PERMDISP x region
 
-```{r plot_regional_permdisp_boxplot}
+```{r plot_regional_permdisp_boxplot, message=FALSE, warning=FALSE}
 dispersion_dataframe_reg <- data.frame(
   State = as.factor(regional_dispersion$group), 
   Distance = regional_dispersion$distances
@@ -668,7 +668,7 @@ subtitle_nmds_reg <- paste0("PERMANOVA test: R² = ", r2_regional, " (", p_label
 
 ### 6. FIGURE 6A: NMDS BY SAMPLING YEAR WITH DYNAMIC LABEL
 
-```{r plot_temporal_nmds_figure}
+```{r plot_temporal_nmds_figure, message=FALSE, warning=FALSE}
 fig_6A_temporal_nmds <- ggplot(ordination_coordinates, aes(x = NMDS1, y = NMDS2, color = Year)) +
   geom_point(size = 2.5, alpha = 0.7) +
   stat_ellipse(level = 0.95, linewidth = 1) + 

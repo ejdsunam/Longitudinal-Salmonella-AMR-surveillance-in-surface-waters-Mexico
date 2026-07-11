@@ -755,7 +755,7 @@ print(temporal_permanova)
     ## 
     ## adonis2(formula = jaccard_distance_matrix ~ Year, data = multivariate_metadata, permutations = 999)
     ##           Df SumOfSqs      R2      F Pr(>F)  
-    ## Model      4    1.863 0.01708 1.5423  0.097 .
+    ## Model      4    1.863 0.01708 1.5423  0.093 .
     ## Residual 355  107.223 0.98292                
     ## Total    359  109.086 1.00000                
     ## ---
@@ -793,7 +793,7 @@ dynamic_subtitle <- paste0("PERMDISP Homogeneity Test: F = ", f_stat, " (p = ", 
 print(dynamic_subtitle)
 ```
 
-    ## [1] "PERMDISP Homogeneity Test: F = 1.23 (p = 0.292)"
+    ## [1] "PERMDISP Homogeneity Test: F = 1.23 (p = 0.297)"
 
 ### 6. Export the table to active workspace for GitHub documentation
 
@@ -846,7 +846,7 @@ print(regional_permanova)
     ## 
     ## adonis2(formula = jaccard_distance_matrix ~ State, data = multivariate_metadata, permutations = 999)
     ##           Df SumOfSqs      R2     F Pr(>F)  
-    ## Model      4    2.141 0.01963 1.777  0.032 *
+    ## Model      4    2.141 0.01963 1.777  0.036 *
     ## Residual 355  106.945 0.98037               
     ## Total    359  109.086 1.00000               
     ## ---
@@ -884,7 +884,7 @@ dynamic_subtitle_reg <- paste0("PERMDISP Homogeneity Test: F = ", f_stat_reg, " 
 print(dynamic_subtitle_reg)
 ```
 
-    ## [1] "PERMDISP Homogeneity Test: F = 2.76 (p = 0.029)"
+    ## [1] "PERMDISP Homogeneity Test: F = 2.76 (p = 0.03)"
 
 ### 13. Automated spreadsheet export
 
