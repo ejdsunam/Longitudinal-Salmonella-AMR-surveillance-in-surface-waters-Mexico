@@ -755,7 +755,7 @@ print(temporal_permanova)
     ## 
     ## adonis2(formula = jaccard_distance_matrix ~ Year, data = multivariate_metadata, permutations = 999)
     ##           Df SumOfSqs      R2      F Pr(>F)  
-    ## Model      4    1.863 0.01708 1.5423  0.084 .
+    ## Model      4    1.863 0.01708 1.5423  0.097 .
     ## Residual 355  107.223 0.98292                
     ## Total    359  109.086 1.00000                
     ## ---
@@ -793,7 +793,7 @@ dynamic_subtitle <- paste0("PERMDISP Homogeneity Test: F = ", f_stat, " (p = ", 
 print(dynamic_subtitle)
 ```
 
-    ## [1] "PERMDISP Homogeneity Test: F = 1.23 (p = 0.291)"
+    ## [1] "PERMDISP Homogeneity Test: F = 1.23 (p = 0.292)"
 
 ### 6. Export the table to active workspace for GitHub documentation
 
@@ -824,7 +824,7 @@ fig_6b_permdisp_boxplot <- ggplot(dispersion_dataframe, aes(x = Year, y = Distan
        title = "Salmonella Resistome Dispersion", 
        subtitle = dynamic_subtitle)
 
-ggsave("Fig6B_Boxplot_PERMDISPxYEAR.svg", plot = fig_6b_permdisp_boxplot, device = "svg", units = "in", width = 8, height = 4.5)
+ggsave("Salmonella_water_figures/Fig6B_Boxplot_PERMDISPxYEAR.svg", plot = fig_6b_permdisp_boxplot, device = "svg", units = "in", width = 8, height = 4.5)
 ```
 
 ### 8. Run PERMANOVA x region - adonis2 function
@@ -846,7 +846,7 @@ print(regional_permanova)
     ## 
     ## adonis2(formula = jaccard_distance_matrix ~ State, data = multivariate_metadata, permutations = 999)
     ##           Df SumOfSqs      R2     F Pr(>F)  
-    ## Model      4    2.141 0.01963 1.777  0.039 *
+    ## Model      4    2.141 0.01963 1.777  0.032 *
     ## Residual 355  106.945 0.98037               
     ## Total    359  109.086 1.00000               
     ## ---
@@ -884,7 +884,7 @@ dynamic_subtitle_reg <- paste0("PERMDISP Homogeneity Test: F = ", f_stat_reg, " 
 print(dynamic_subtitle_reg)
 ```
 
-    ## [1] "PERMDISP Homogeneity Test: F = 2.76 (p = 0.031)"
+    ## [1] "PERMDISP Homogeneity Test: F = 2.76 (p = 0.029)"
 
 ### 13. Automated spreadsheet export
 
@@ -915,7 +915,7 @@ fig_6d_permdisp_boxplot_reg <- ggplot(dispersion_dataframe_reg, aes(x = State, y
        title = "Salmonella Resistome Dispersion by Region", 
        subtitle = dynamic_subtitle_reg)
 
-ggsave("Fig_6D_Boxplot_PERMDISPxSTATE.svg", plot = fig_6d_permdisp_boxplot_reg, device = "svg", units = "in", width = 8, height = 4.5)
+ggsave("Salmonella_water_figures/Fig_6D_Boxplot_PERMDISPxSTATE.svg", plot = fig_6d_permdisp_boxplot_reg, device = "svg", units = "in", width = 8, height = 4.5)
 ```
 
 ------------------------------------------------------------------------
@@ -1185,7 +1185,7 @@ fig_6A_temporal_nmds <- ggplot(ordination_coordinates, aes(x = NMDS1, y = NMDS2,
        subtitle = subtitle_nmds_temp,
        color = "Year")
 
-ggsave("Figure_6A_NMDSxYEAR.svg", plot = fig_6A_temporal_nmds, device = "svg", units = "in", width = 8, height = 4.5)
+ggsave("Salmonella_water_figures/Figure_6A_NMDSxYEAR.svg", plot = fig_6A_temporal_nmds, device = "svg", units = "in", width = 8, height = 4.5)
 ```
 
 ### 7. Figure 6C: NMDS by state with dynamic subtitel Optimized utilizing micro-dispersion jittering, transparency, fixed scales, and contour-only shapes
@@ -1203,7 +1203,7 @@ fig_6C_spatial_nmds <- ggplot(ordination_coordinates, aes(x = NMDS1, y = NMDS2, 
        subtitle = subtitle_nmds_reg,
        color = "State")
 
-ggsave("Figure_6C_NMDSxSTATE.svg", plot = fig_6C_spatial_nmds, device = "svg", units = "in", width = 8.5, height = 4.8)
+ggsave("Salmonella_water_figures/Figure_6C_NMDSxSTATE.svg", plot = fig_6C_spatial_nmds, device = "svg", units = "in", width = 8.5, height = 4.8)
 ```
 
 ------------------------------------------------------------------------
@@ -1283,7 +1283,7 @@ fig_7_alluvial_flow <- ggplot(data = alluvial_dataframe, aes(axis1 = Year, axis2
   labs(title = "Longitudinal flow of genotypic and phenotypic MDR",
        subtitle = dynamic_alluvial_subtitle,
        fill = "Year of sampling")
-ggsave("Figure_7_Alluvial_MDR_Flow.svg", plot = fig_7_alluvial_flow, device = "svg", units = "in", width = 8.5, height = 4.8)
+ggsave("Salmonella_water_figures/Figure_7_Alluvial_MDR_Flow.svg", plot = fig_7_alluvial_flow, device = "svg", units = "in", width = 8.5, height = 4.8)
 ```
 
 ------------------------------------------------------------------------
