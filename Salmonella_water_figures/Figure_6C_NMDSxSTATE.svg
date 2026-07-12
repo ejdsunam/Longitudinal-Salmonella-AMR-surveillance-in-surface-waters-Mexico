@@ -652,7 +652,7 @@
 <text x='520.96' y='258.59' style='font-size: 11.20px; font-family: "Arial";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>Morelos</text>
 <text x='520.96' y='275.87' style='font-size: 11.20px; font-family: "Arial";' textLength='77.09px' lengthAdjust='spacingAndGlyphs'>State of Mexico</text>
 <text x='520.96' y='293.15' style='font-size: 11.20px; font-family: "Arial";' textLength='41.64px' lengthAdjust='spacingAndGlyphs'>Tlaxcala</text>
-<text x='39.64' y='39.54' style='font-size: 14.00px; font-family: "Arial";' textLength='267.39px' lengthAdjust='spacingAndGlyphs'>PERMANOVA test: R² = 0.0196 (p = 0.031)</text>
+<text x='39.64' y='39.54' style='font-size: 14.00px; font-family: "Arial";' textLength='319.12px' lengthAdjust='spacingAndGlyphs'>PERMANOVA test: F = 1.78, R² = 0.0196 (p = 0.04)</text>
 <text x='39.64' y='19.01' style='font-size: 16.80px; font-family: "Arial";' textLength='333.44px' lengthAdjust='spacingAndGlyphs'>Resistome spatial partitioning across regions</text>
 </g>
 </g>
