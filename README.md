@@ -12,6 +12,8 @@ Enrique J. Delgado Suárez
 ## I. LOAD REQUIRED LIBRARIES, IMPORT AND ADJUST THE EXCEL FILES
 
 ``` r
+library(knitr)
+opts_chunk$set(fig.path = "Salmonella_water_figures/")
 library(vegan)        # Multivariate analyses (Jaccard, PERMANOVA, PERMDISP)
 library(ggplot2)      # Produce figures
 library(dplyr)        # Structured data manipulation and cleaning
@@ -754,12 +756,10 @@ print(temporal_permanova)
     ## Number of permutations: 999
     ## 
     ## adonis2(formula = jaccard_distance_matrix ~ Year, data = multivariate_metadata, permutations = 999)
-    ##           Df SumOfSqs      R2      F Pr(>F)  
-    ## Model      4    1.863 0.01708 1.5423  0.093 .
-    ## Residual 355  107.223 0.98292                
-    ## Total    359  109.086 1.00000                
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ##           Df SumOfSqs      R2      F Pr(>F)
+    ## Model      4    1.863 0.01708 1.5423  0.109
+    ## Residual 355  107.223 0.98292              
+    ## Total    359  109.086 1.00000
 
 ### 2. Run PERMDISP - assess homocedasticity
 
@@ -782,18 +782,21 @@ temporal_permutest_results <- permutest(temporal_dispersion, permutations = 999)
 ### 4. Extract ANOVA results
 
 ``` r
-f_stat  <- round(temporal_permutest_results$tab$F[1], 2)
-p_value <- round(temporal_permutest_results$tab$`Pr(>F)`[1], 3)
+df_groups_temp <- temporal_permutest_results$tab$Df[1]
+df_res_temp    <- temporal_permutest_results$tab$Df[2]
+f_stat         <- round(temporal_permutest_results$tab$F[1], 2)
+p_value        <- round(temporal_permutest_results$tab$`Pr(>F)`[1], 3)
 ```
 
 ### 5. Format label to two decimals
 
 ``` r
-dynamic_subtitle <- paste0("PERMDISP Homogeneity Test: F = ", f_stat, " (p = ", p_value, ")")
+p_label_permdisp <- ifelse(p_value <= 0.001, "p < 0.001", paste0("p = ", p_value))
+dynamic_subtitle <- paste0("PERMDISP Homogeneity Test: Df = (", df_groups_temp, ", ", df_res_temp, "), F = ", f_stat, " (", p_label_permdisp, ")")
 print(dynamic_subtitle)
 ```
 
-    ## [1] "PERMDISP Homogeneity Test: F = 1.23 (p = 0.297)"
+    ## [1] "PERMDISP Homogeneity Test: Df = (4, 355), F = 1.23 (p = 0.33)"
 
 ### 6. Export the table to active workspace for GitHub documentation
 
@@ -846,7 +849,7 @@ print(regional_permanova)
     ## 
     ## adonis2(formula = jaccard_distance_matrix ~ State, data = multivariate_metadata, permutations = 999)
     ##           Df SumOfSqs      R2     F Pr(>F)  
-    ## Model      4    2.141 0.01963 1.777  0.036 *
+    ## Model      4    2.141 0.01963 1.777   0.04 *
     ## Residual 355  106.945 0.98037               
     ## Total    359  109.086 1.00000               
     ## ---
@@ -873,18 +876,21 @@ regional_permutest_results <- permutest(regional_dispersion, permutations = 999)
 ### 11. Extract exact metrics from the permuted ANOVA matrix for dynamic labels
 
 ``` r
-f_stat_reg  <- round(regional_permutest_results$tab$F, 2)[1]
-p_value_reg <- round(regional_permutest_results$tab$`Pr(>F)`, 3)[1]
+df_groups_reg <- regional_permutest_results$tab$Df[1]
+df_res_reg    <- regional_permutest_results$tab$Df[2]
+f_stat_reg    <- round(regional_permutest_results$tab$F[1], 2)
+p_value_reg   <- round(regional_permutest_results$tab$`Pr(>F)`[1], 3)
 ```
 
 ### 12. Format the dynamic subtitle vector
 
 ``` r
-dynamic_subtitle_reg <- paste0("PERMDISP Homogeneity Test: F = ", f_stat_reg, " (p = ", p_value_reg, ")")
+p_label_reg_pd       <- ifelse(p_value_reg <= 0.001, "p < 0.001", paste0("p = ", p_value_reg))
+dynamic_subtitle_reg <- paste0("PERMDISP Homogeneity Test: Df = (", df_groups_reg, ", ", df_res_reg, "), F = ", f_stat_reg, " (", p_label_reg_pd, ")")
 print(dynamic_subtitle_reg)
 ```
 
-    ## [1] "PERMDISP Homogeneity Test: F = 2.76 (p = 0.03)"
+    ## [1] "PERMDISP Homogeneity Test: Df = (4, 355), F = 2.76 (p = 0.026)"
 
 ### 13. Automated spreadsheet export
 
@@ -1160,33 +1166,48 @@ ordination_coordinates$State <- multivariate_metadata$State
 ### 5. Dynamic subtitle extraction
 
 ``` r
-r2_temporal <- round(temporal_permanova$R2[1], 4)
-p_temporal  <- round(temporal_permanova$`Pr(>F)`[1], 4)
-p_label_temp <- ifelse(p_temporal == 0, "p < 0.001", paste0("p = ", p_temporal))
-subtitle_nmds_temp <- paste0("PERMANOVA test: R² = ", r2_temporal, " (", p_label_temp, ")")
+f_stat_temp   <- round(temporal_permanova[1, "F"], 2)
+r2_temporal   <- round(temporal_permanova[1, "R2"], 4)
+p_temporal    <- temporal_permanova$`Pr(>F)`[1]
+p_label_temp  <- ifelse(p_temporal <= 0.001, "p < 0.001", paste0("p = ", round(p_temporal, 3)))
 
-r2_regional <- round(regional_permanova$R2[1], 4)
-p_regional  <- round(regional_permanova$`Pr(>F)`[1], 4)
-p_label_reg <- ifelse(p_regional == 0, "p < 0.001", paste0("p = ", p_regional))
-subtitle_nmds_reg <- paste0("PERMANOVA test: R² = ", r2_regional, " (", p_label_reg, ")")
+subtitle_nmds_temp <- paste0("PERMANOVA test: F = ", f_stat_temp, ", R² = ", r2_temporal, " (", p_label_temp, ")")
+
+f_stat_reg    <- round(regional_permanova[1, "F"], 2)
+r2_regional   <- round(regional_permanova[1, "R2"], 4)
+p_regional    <- regional_permanova$`Pr(>F)`[1]
+p_label_reg   <- ifelse(p_regional <= 0.001, "p < 0.001", paste0("p = ", round(p_regional, 3)))
+
+subtitle_nmds_reg <- paste0("PERMANOVA test: F = ", f_stat_reg, ", R² = ", r2_regional, " (", p_label_reg, ")")
+
+print(subtitle_nmds_temp)
 ```
 
-### 6. FIGURE 6A: NMDS BY SAMPLING YEAR WITH DYNAMIC LABEL
+    ## [1] "PERMANOVA test: F = 1.54, R² = 0.0171 (p = 0.109)"
 
 ``` r
-fig_6A_temporal_nmds <- ggplot(ordination_coordinates, aes(x = NMDS1, y = NMDS2, color = Year)) +
-  geom_point(size = 2.5, alpha = 0.7) +
-  stat_ellipse(level = 0.95, linewidth = 1) + 
-  scale_color_brewer(palette = "Set2") +       
-  theme_minimal(base_size = 14) +
-  theme(panel.grid.minor = element_blank(), axis.title = element_text(face = "bold")) +
-  labs(x = "NMDS1", y = "NMDS2", 
-       title = "Resistome temporal structure (2019-2023)",
-       subtitle = subtitle_nmds_temp,
-       color = "Year")
-
-ggsave("Salmonella_water_figures/Figure_6A_NMDSxYEAR.svg", plot = fig_6A_temporal_nmds, device = "svg", units = "in", width = 8, height = 4.5)
+print(subtitle_nmds_reg)
 ```
+
+    ## [1] "PERMANOVA test: F = 1.78, R² = 0.0196 (p = 0.04)"
+
+
+    ### 6. FIGURE 6A: NMDS BY SAMPLING YEAR WITH DYNAMIC LABEL
+
+
+    ``` r
+    fig_6A_temporal_nmds <- ggplot(ordination_coordinates, aes(x = NMDS1, y = NMDS2, color = Year)) +
+      geom_point(size = 2.5, alpha = 0.7) +
+      stat_ellipse(level = 0.95, linewidth = 1) + 
+      scale_color_brewer(palette = "Set2") +       
+      theme_minimal(base_size = 14) +
+      theme(panel.grid.minor = element_blank(), axis.title = element_text(face = "bold")) +
+      labs(x = "NMDS1", y = "NMDS2", 
+           title = "Resistome temporal structure (2019-2023)",
+           subtitle = subtitle_nmds_temp,
+           color = "Year")
+
+    ggsave("Salmonella_water_figures/Figure_6A_NMDSxYEAR.svg", plot = fig_6A_temporal_nmds, device = "svg", units = "in", width = 8, height = 4.5)
 
 ### 7. Figure 6C: NMDS by state with dynamic subtitel Optimized utilizing micro-dispersion jittering, transparency, fixed scales, and contour-only shapes
 
